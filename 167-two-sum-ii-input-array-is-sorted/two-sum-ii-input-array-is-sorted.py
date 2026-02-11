@@ -1,8 +1,14 @@
 class Solution:
     def twoSum(self, numbers: List[int], target: int) -> List[int]:
-        dict = {}
-        for i in range(len(numbers)):
-            if target - numbers[i] in dict:
-                return [dict[target-numbers[i]], i+1]
+        l, r = 0, len(numbers) - 1
+
+        while l < r:
+            curSum = numbers[l] + numbers[r]
+
+            if curSum > target:
+                r -= 1
+            elif curSum < target:
+                l += 1
             else:
-                dict[numbers[i]] = i+1
+                return [l + 1, r + 1]
+        return []
